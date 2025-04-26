@@ -1,1 +1,44 @@
 @import '@fontsource/fira-mono';
+
+html {
+    background-color: #FFFBF0;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #FFFBF0;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header */
+
+nav {
+    font-size: clamp(1.5rem, 2.5vw, 3rem); 
+    font-weight: 600;
+}
+
+#logo {
+    width: 10vw;
+}
+
+.banner-image{
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .banner-image {
+        height: 20vw;
+    }
+}
+
+#logo-gap {
+    width: 15vw;
+}
+
+.nav a {
+    font-size: clamp(0.5rem, 1.2em, 3rem);
+    color: black;
+    text-decoration: none;
+}
