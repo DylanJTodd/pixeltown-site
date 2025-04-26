@@ -1,13 +1,11 @@
 <script>
     import { onMount } from "svelte";
 
-    let selected = ""; // No default selection
+    let selected = "";
 
     onMount(() => {
-        // Get the current path from the browser's location
         const currentPath = window.location.pathname;
 
-        // Match the path to the corresponding navigation item
         switch (currentPath) {
             case "/":
                 selected = "Home";
@@ -22,13 +20,23 @@
                 selected = "Store";
                 break;
             default:
-                selected = ""; // No match
+                selected = "";
         }
     });
 
     function selectItem(item) {
         selected = item;
     }
+
+    function copyText(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        alert('Copied: ' + text);
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  }
 </script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -83,16 +91,16 @@
         <img src="/logo.png" alt="Pixeltown logo" id="logo">
     </a>
 
-    <!-- Discord and IP Banner Links-->
-    <a class="banner-links" href="/" style="left: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;"> 
-        <div style="display: flex; align-items: center; gap: 0.5rem; line-height: 0.1;">
-            <i class="fa-solid fa-copy"></i>
-            <p style="margin: 0;">Join The Discord</p>
-        </div>
-        <p style="margin: 0; font-size: 80%; font-weight: 400; line-height: 0.1;">Click to copy</p>
+    <!-- Discord and IP Banner Links -->
+    <a class="banner-links" href="/" on:click|preventDefault={() => copyText('https://discord.gg/INVITELINKHERE')} style="left: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem; line-height: 0.1;">
+        <i class="fa-brands fa-discord"></i>
+        <p style="margin: 0;">Join The Discord</p>
+    </div>
+    <p style="margin: 0; font-size: 80%; font-weight: 400; line-height: 0.1;">Click to copy</p>
     </a>
-
-    <a class="banner-links" href="/" style="right: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;"> 
+    
+    <a class="banner-links" href="/" on:click|preventDefault={() => copyText('PixelTown.apexmc.co')} style="right: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
         <div style="display: flex; align-items: center; gap: 0.5rem; line-height: 0.1;">
             <i class="fa-solid fa-copy"></i>
             <p style="margin: 0;">Copy Server IP</p>
