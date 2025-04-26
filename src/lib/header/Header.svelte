@@ -1,119 +1,95 @@
 <script>
-    import { onMount } from "svelte";
+    import { page } from '$app/stores';
 
-    let selected = "";
+    let currentPath = '';
+    $: currentPath = $page.url.pathname;
 
-    onMount(() => {
-        const currentPath = window.location.pathname;
+    const discordLink = 'https://discord.gg/your-discord-link'; // Replace with link
+    const serverIP = 'play.pixeltown.com';                      // Replace with IP
 
-        switch (currentPath) {
-            case "/":
-                selected = "Home";
-                break;
-            case "/Join":
-                selected = "Join";
-                break;
-            case "/Vote":
-                selected = "Vote";
-                break;
-            case "/Store":
-                selected = "Store";
-                break;
-            default:
-                selected = "";
+    function copyToClipboard() {
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+            navigator.clipboard.writeText(serverIP).then(() => {
+                alert('Server IP copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
         }
-    });
-
-    function selectItem(item) {
-        selected = item;
     }
-
-    function copyText(text) {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        alert('Copied: ' + text);
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-  }
 </script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-<div style="position: relative; width: 100%;">
-    <!-- Banner Image -->
-    <img src="/banner.png" alt="Pixeltown banner" class="banner-image" style="width: 100%;">
-
-    <!-- Navigation buttons -->
-    <nav style="position: absolute; bottom: -10%; left: 49.6%; transform: translateX(-50%); display: flex; align-items: center;">
-        <ul class="nav" style="list-style: none; display: flex; align-items: center; padding: 0; margin: 0; gap: 2rem;">
-            <li>
-                <a 
-                    href="/" 
-                    class:selected={selected === "Home"} 
-                    on:click={() => selectItem("Home")} 
-                    style="text-decoration: none;"
-                >Home</a>
-            </li>
-            <li>
-                <a 
-                    href="/Join" 
-                    class:selected={selected === "Join"} 
-                    on:click={() => selectItem("Join")} 
-                    style="text-decoration: none;"
-                >Join</a>
-            </li>
-        </ul>
-        <div id="logo-gap" style="flex-shrink: 0;"></div>
-        <ul class="nav" style="list-style: none; display: flex; align-items: center; padding: 0; margin: 0; gap: 2rem;">
-            <li>
-                <a 
-                    href="/Vote" 
-                    class:selected={selected === "Vote"} 
-                    on:click={() => selectItem("Vote")} 
-                    style="text-decoration: none;"
-                >Vote</a>
-            </li>
-            <li>
-                <a 
-                    href="/Store" 
-                    class:selected={selected === "Store"} 
-                    on:click={() => selectItem("Store")} 
-                    style="text-decoration: none;"
-                >Store</a>
-            </li>
-        </ul>
-    </nav>
-    
-    <!-- Logo Image -->
-    <a href="/" style="position: absolute; top: 40%; left: 50%; transform: translateX(-50%);">
-        <img src="/logo.png" alt="Pixeltown logo" id="logo">
-    </a>
-
-    <!-- Discord and IP Banner Links -->
-    <a class="banner-links" href="/" on:click|preventDefault={() => copyText('https://discord.gg/INVITELINKHERE')} style="left: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-    <div style="display: flex; align-items: center; gap: 0.5rem; line-height: 0.1;">
-        <i class="fa-brands fa-discord"></i>
-        <p style="margin: 0;">Join The Discord</p>
-    </div>
-    <p style="margin: 0; font-size: 80%; font-weight: 400; line-height: 0.1;">Click to copy</p>
-    </a>
-    
-    <a class="banner-links" href="/" on:click|preventDefault={() => copyText('PixelTown.apexmc.co')} style="right: 1%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; line-height: 0.1;">
-            <i class="fa-solid fa-copy"></i>
-            <p style="margin: 0;">Copy Server IP</p>
+<header>
+    <div class="container top-bar">
+        <div>
+            <a href={discordLink} target="_blank" rel="noopener noreferrer" class="hovered">
+                <i class="fab fa-discord"></i> Join The Discord
+            </a>
         </div>
-        <p style="margin: 0; font-size: 80%; font-weight: 400; line-height: 0.1;">Click to copy</p>
-    </a>
-</div>
+        <div>
+            <a href="#" on:click|preventDefault={copyToClipboard} class="hovered">
+                <i class="fas fa-copy"></i> Copy Server IP
+            </a>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container nav-container">
+        <div class="nav-links-left">
+            <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
+            <a href="/Join" class={currentPath === '/Join' ? 'active' : ''}>Join</a>
+        </div>
+        <a href="/" class="logo-pokeball">
+            <img src="https://pngimg.com/uploads/pokeball/pokeball_PNG6.png" alt="Pokeball" style="object-fit: cover; width: 101%" />
+        </a>
+        <div class="nav-links-right">
+            <a href="/Vote" class={currentPath === '/Vote' ? 'active' : ''}>Vote</a>
+            <a href="/Store" class={currentPath === '/Store' ? 'active' : ''}>Store</a>
+        </div>
+    </div>
+</nav>
 
 <style>
-a.selected {
-    font-size: 110%;
-    text-decoration: underline !important;
-    font-weight: 800;
-    color: #ff0000;
-}
+    nav a.active {
+        color: #333;
+    }
+    .active::after {
+        width: 100%;
+        left: 0;
+        background: #F4A261;
+    }
+
+    .logo-pokeball {
+        margin: 0;
+        padding: 0;
+        transition: border-color 0.5s ease, filter 0.3s ease; /* Smooth animation for border and filter */
+        border-color: white;
+    }
+
+    .logo-pokeball::after{
+        display:none;
+    }
+
+    .logo-pokeball img {
+        transition: filter 0.3s ease; /* Smooth transition for grayscale effect */
+    }
+
+    .logo-pokeball:hover {
+        border-color: #F4A261; /* Change border color to orange */
+    }
+
+    .logo-pokeball:hover img {
+        filter: brightness(0.8); /* Slightly darken the image */
+    }
+
+    .hovered {
+        transition: color 0.3s ease
+    }
+
+    .hovered:hover {
+        color: #67e6eb;
+        font-weight: 600;
+    }
 </style>
