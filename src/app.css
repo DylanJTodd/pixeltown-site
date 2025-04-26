@@ -4,16 +4,19 @@ html {
     background-color: #FFFBF0;
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 
 body {
     background-color: #FFFBF0;
     padding: 0;
     margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
-
 nav {
     font-size: clamp(1.5rem, 2vw, 2.5rem); 
     font-weight: 600;
@@ -52,4 +55,29 @@ nav {
     color: white; 
     font-weight: 600; 
     font-size: 120%
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+
+/* Footer */
+footer {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    height: fit-content;
+    text-align: left;
+    margin-top: auto;
+    border-top: 1px solid #a50000;
+}
+
+footer p{
+    font-size: 80%;
+    line-height: 0.6;
 }
