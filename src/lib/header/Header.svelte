@@ -4,8 +4,8 @@
     let currentPath = '';
     $: currentPath = $page.url.pathname;
 
-    const discordLink = 'https://discord.gg/your-discord-link'; // Replace with link
-    const serverIP = 'play.pixeltown.com';                      // Replace with IP
+    const discordLink = 'https://discord.gg/your-discord-link'; // Replace with your actual Discord link
+    const serverIP = 'play.pixeltown.com';                      // Replace with your actual server IP
 
     function copyToClipboard() {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -21,22 +21,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <header>
-    <div class="container top-bar">
+    <div class="top-bar">
         <div>
             <a href={discordLink} target="_blank" rel="noopener noreferrer" class="hovered">
                 <i class="fab fa-discord"></i> Join The Discord
             </a>
         </div>
-        <div>
+        <div class="right-aligned">
             <a href="#" on:click|preventDefault={copyToClipboard} class="hovered">
-                <i class="fas fa-copy"></i> Copy Server IP
+            <i class="fas fa-copy"></i> Copy Server IP
             </a>
         </div>
     </div>
 </header>
 
 <nav>
-    <div class="container nav-container">
+    <div class="nav-container">
         <div class="nav-links-left">
             <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
             <a href="/Join" class={currentPath === '/Join' ? 'active' : ''}>Join</a>
@@ -64,7 +64,7 @@
     .logo-pokeball {
         margin: 0;
         padding: 0;
-        transition: border-color 0.5s ease, filter 0.3s ease; /* Smooth animation for border and filter */
+        transition: border-color 0.5s ease, filter 0.3s ease;
         border-color: white;
     }
 
@@ -73,15 +73,15 @@
     }
 
     .logo-pokeball img {
-        transition: filter 0.3s ease; /* Smooth transition for grayscale effect */
+        transition: filter 0.3s ease;
     }
 
     .logo-pokeball:hover {
-        border-color: #F4A261; /* Change border color to orange */
+        border-color: #F4A261;
     }
 
     .logo-pokeball:hover img {
-        filter: brightness(0.8); /* Slightly darken the image */
+        filter: brightness(0.8);
     }
 
     .hovered {
@@ -91,5 +91,39 @@
     .hovered:hover {
         color: #67e6eb;
         font-weight: 600;
+    }
+
+    .right-aligned {
+        margin-left: auto;
+        text-align: right !important;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 5px;
+    }
+
+    .nav-links-left,
+    .nav-links-right {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .nav-container {
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-links-left,
+        .nav-links-right {
+            justify-content: center; /* Ensure links stay centered */
+        }
     }
 </style>

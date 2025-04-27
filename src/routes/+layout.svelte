@@ -31,10 +31,10 @@
   </div>
 
   <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 80%; align-items: flex-end; padding-top: 5px; font-weight: 600;">
-      <a href="/" target="_blank" style="text-decoration: none; color: black;">Terms and Conditions</a>
-      <a href="/" target="_blank" style="text-decoration: none; color: black;">Privacy Policy</a>
-      <a href="/" target="_blank" style="text-decoration: none; color: black;">Refund Policy</a>
-      <a href="/" target="_blank" style="text-decoration: none; color: black;">Contact</a>
+      <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Terms and Conditions</a>
+      <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Privacy Policy</a>
+      <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Refund Policy</a>
+      <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Contact</a>
   </div>
 </footer>
 
