@@ -35,6 +35,7 @@
       <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Privacy Policy</a>
       <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Refund Policy</a>
       <a href="/" target="_blank" style="text-decoration: underline; color: #333;">Contact</a>
+      <a href="mailto:pixeltownbusiness@gmail.com" style="margin-top: 2rem; font-size: 80%; text-decoration: none; color: #333;">For business inquiries, contact <span>pixeltownbusiness@gmail.com</span></a>
   </div>
 </footer>
 
