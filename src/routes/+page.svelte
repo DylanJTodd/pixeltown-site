@@ -3,6 +3,14 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
+<script>
+	function copyToClipboard() {
+		navigator.clipboard.writeText("PixelTown.apexmc.co").then(() => {
+			alert("Server IP copied to clipboard!");
+		});
+	}
+</script>
+
 <div class="hero-container">
 	<section class="hero full-width">
 			<h1>Welcome to PixelTown!</h1>
@@ -27,8 +35,12 @@
 					<li>Explore our <strong><a href="/Store" class="main-links">Store</a></strong> for unique and affordable items.</li>
 					<li>Join the server by heading over to the <strong><a href="/Join" class="main-links">Join</a></strong> section.</li>
 				</ul>
-				<img src="/Togekiss.png" alt="Togekiss" style="width: 35%; display: block; margin: 0 auto;">
-				<p style="font-size: 200%; text-align: center;">Come join us at <a href="#" class="ip-link">our server IP</a> and be part of the fun!</p>
+				<img src="/Togekiss.png" alt="Togekiss" style="width: 70%; display: block; margin: 0 auto;">
+				<p style="font-size: 200%; text-align: center;">
+					Come join us at 
+					<a href="#" class="ip-link" on:click|preventDefault={copyToClipboard}>our server IP</a> 
+					and be part of the fun!
+				</p>
 			</div>
 		</div>
 	</section>
