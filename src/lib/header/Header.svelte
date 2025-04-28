@@ -4,8 +4,8 @@
     let currentPath = '';
     $: currentPath = $page.url.pathname;
 
-    const discordLink = 'https://discord.gg/your-discord-link'; // Replace with your actual Discord link
-    const serverIP = 'play.pixeltown.com';                      // Replace with your actual server IP
+    const discordLink = 'https://discord.gg/8Ca7xhacsw';
+    const serverIP = 'PixelTown.apexmc.co';
 
     function copyToClipboard() {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
